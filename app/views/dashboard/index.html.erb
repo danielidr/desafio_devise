@@ -1,0 +1,28 @@
+<div class="row">
+    <%= form_tag dashboard_index_path, method: :post do |form| %>
+    <div class="panel panel-info">
+        <div class="panel-heading">Dashboard</div>
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Admin</td>
+            </tr>
+            <% @users.each do |user| %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <%= select_tag("user_#{user.id}", options_for_select([['Yes', true], ['No', false]], {:selected => user.admin})) %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <div class="actions">
+        <%= submit_tag "Save", class: "btn btn-info" %>
+    </div>
+    <% end %>
+</div>
+
+
